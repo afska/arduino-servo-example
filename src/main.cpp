@@ -1,6 +1,7 @@
 #include "Arduino.h"
-#include "AnalogInputDevice.h"
-#include "Servo.h"
+#include "devices/AnalogInputDevice.h"
+#include "devices/ServoMotor.h"
+using namespace devices;
 
 int main() {
 	init(); setup();
@@ -9,17 +10,17 @@ int main() {
 }
 
 AnalogInputDevice* pot;
-Servo servo;
+ServoMotor* servoMotor;
 
 void setup() {
 	pot = new AnalogInputDevice(A0);
-	servo.attach(9);
+	servoMotor = new ServoMotor(9);
 	Serial.begin(9600);
 }
 
 void loop() {
 	int angle = pot->ReadInRange(0, 179);
 	Serial.println(angle);
-	servo.write(angle);
+	servoMotor->Rotate(angle);
 	delay(15);
 }

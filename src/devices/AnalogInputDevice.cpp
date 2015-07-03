@@ -1,4 +1,5 @@
 #include "AnalogInputDevice.h"
+using namespace devices;
 
 AnalogInputDevice::AnalogInputDevice(uint8_t pin) {
 	this->pin = pin;
